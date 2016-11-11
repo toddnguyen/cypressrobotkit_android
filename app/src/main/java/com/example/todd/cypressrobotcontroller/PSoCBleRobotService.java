@@ -453,7 +453,7 @@ public class PSoCBleRobotService extends Service {
      *
      * @return the motor service UUID
      */
-    public static UUID getrobotUUID() {
+    public static UUID getRobotUUID() {
         return UUID.fromString(PSoCBleRobotService.robotUUID);
     }
 }
