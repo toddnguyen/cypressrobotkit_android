@@ -39,14 +39,14 @@ http://www.cypress.com/products/bluetooth-low-energy-ble
     >
 
     <TextView
-        android:id="@+id/tach_left"
+        android:id="@+id/IR1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:text="@string/zero" />
 
     <TextView
-        android:id="@+id/tach_right"
+        android:id="@+id/IR2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -68,7 +68,7 @@ http://www.cypress.com/products/bluetooth-low-energy-ble
         android:layout_height="wrap_content"
         android:text="FWD"
         android:id="@+id/forward_button"
-        android:layout_below="@+id/tach_right"
+        android:layout_below="@+id/IR2"
         android:layout_centerHorizontal="true"
         android:elevation="0dp" />
 
@@ -98,15 +98,6 @@ http://www.cypress.com/products/bluetooth-low-energy-ble
         android:layout_alignBottom="@+id/left_button"
         android:layout_toEndOf="@+id/backward_button" />
 
-    <Button
-        android:text="stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/stop_button"
-        android:layout_below="@+id/backward_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
-
     <SeekBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -118,15 +109,6 @@ http://www.cypress.com/products/bluetooth-low-energy-ble
         android:progress="16" />
 
     <Button
-        android:text="Line Following"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/linefollowing"
-        android:layout_below="@+id/speedBar"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/stop_button" />
-
-    <Button
         android:text="Obstacle Avoidance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -134,15 +116,21 @@ http://www.cypress.com/products/bluetooth-low-energy-ble
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentEnd="true" />
 
-    <ToggleButton
-        android:text="ToggleButton"
+    <Button
+        android:text="Line Following"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linefollowing"
-        android:layout_toEndOf="@+id/tach_left"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="24dp"
-        android:id="@+id/toggleButton"
-        android:checked="false" />
+        android:id="@+id/linefollowing"
+        android:layout_below="@+id/speedBar"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/Ultrasonic"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </RelativeLayout>

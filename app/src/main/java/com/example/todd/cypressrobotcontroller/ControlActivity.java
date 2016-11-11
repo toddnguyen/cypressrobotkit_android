@@ -40,11 +40,10 @@ package com.example.todd.cypressrobotcontroller;
         import android.os.IBinder;
         import android.support.v7.app.AppCompatActivity;
         import android.util.Log;
+        import android.view.MotionEvent;
         import android.view.View;
         import android.widget.Button;
-        import android.widget.CompoundButton;
         import android.widget.SeekBar;
-        import android.widget.Switch;
         import android.widget.TextView;
 
 /**
@@ -55,17 +54,15 @@ package com.example.todd.cypressrobotcontroller;
 public class ControlActivity extends AppCompatActivity {
 
     // Objects to access the layout items for Tach, Buttons, and Seek bars
-    private static TextView mTachLeftText;
-    private static TextView mTachRightText;
+    private static TextView mIR1Text;
+    private static TextView mIR2Text;
+    private static TextView mUltrasonicText;
     private static SeekBar mSpeedSeekBar;
-    private static Switch mEnableLeftSwitch;
-    private static Switch mEnableRightSwitch;
 
     private static Button mForwardButton;
     private static Button mBackwardButton;
     private static Button mRightButton;
     private static Button mLeftButton;
-    private static Button mStopButton;
     private static Button mLineFollowingButton;
     private static Button mObstacleAvoidanceButton;
 
@@ -76,8 +73,8 @@ public class ControlActivity extends AppCompatActivity {
     private static String mDeviceAddress;
     private static PSoCBleRobotService mPSoCBleRobotService;
 
-    private static int speed = 15;
-
+    private static int mSpeed = 15;
+    
     /**
      * This manages the lifecycle of the BLE service.
      * When the service starts we get the service object, initialize the service, and connect.
@@ -108,14 +105,14 @@ public class ControlActivity extends AppCompatActivity {
         setContentView(R.layout.activity_control);
 
         // Assign the various layout objects to the appropriate variables
-        mTachLeftText = (TextView) findViewById(R.id.tach_left);
-        mTachRightText = (TextView) findViewById(R.id.tach_right);
+        mIR1Text = (TextView) findViewById(R.id.IR1);
+        mIR2Text = (TextView) findViewById(R.id.IR2);
+        mUltrasonicText = (TextView) findViewById(R.id.Ultrasonic);
         mSpeedSeekBar = (SeekBar) findViewById(R.id.speedBar);
         mForwardButton = (Button) findViewById(R.id.forward_button);
         mBackwardButton = (Button) findViewById(R.id.backward_button);
         mRightButton = (Button) findViewById(R.id.right_button);
         mLeftButton = (Button) findViewById(R.id.left_button);
-        mStopButton = (Button) findViewById(R.id.stop_button);
         mLineFollowingButton = (Button) findViewById(R.id.linefollowing);
         mObstacleAvoidanceButton = (Button) findViewById(R.id.obstacleavoidance);
 
@@ -127,33 +124,63 @@ public class ControlActivity extends AppCompatActivity {
         Intent RobotServiceIntent = new Intent(this, PSoCBleRobotService.class);
         bindService(RobotServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
 
-        mForwardButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                mPSoCBleRobotService.moveForward();
+        mForwardButton.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mPSoCBleRobotService.moveForward(mSpeed);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        mPSoCBleRobotService.stopMoving();
+                        return true;
+                }
+                return false;
             }
         });
 
-        mBackwardButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                mPSoCBleRobotService.moveBackward();
+        mBackwardButton.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mPSoCBleRobotService.moveBackward(mSpeed);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        mPSoCBleRobotService.stopMoving();
+                        return true;
+                }
+                return false;
             }
         });
 
-        mRightButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                mPSoCBleRobotService.rotateRight();
+        mRightButton.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mPSoCBleRobotService.rotateRight(mSpeed);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        mPSoCBleRobotService.stopMoving();
+                        return true;
+                }
+                return false;
             }
         });
 
-        mLeftButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                mPSoCBleRobotService.rotateLeft();
-            }
-        });
-
-        mStopButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                mPSoCBleRobotService.stopMoving();
+        mLeftButton.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mPSoCBleRobotService.rotateLeft(mSpeed);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        mPSoCBleRobotService.stopMoving();
+                        return true;
+                }
+                return false;
             }
         });
 
@@ -170,22 +197,14 @@ public class ControlActivity extends AppCompatActivity {
         });
 
         mSpeedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
-
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                speed = i;
+                mSpeed = i;
             }
-
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
+            public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                //Send speed to PSoC
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
     } /* End of onCreate method */
@@ -228,24 +247,6 @@ public class ControlActivity extends AppCompatActivity {
     }
 
     /**
-     * Enable or disable the left/right motor
-     *
-     * @param isChecked used to enable/disable motor
-     * @param motor is the motor to enable/disable (left or right)
-     */
-    private void enableMotorSwitch(boolean isChecked, PSoCBleRobotService.Motor motor) {
-        if (isChecked) { // Turn on the specified motor
-            mPSoCBleRobotService.setMotorState(motor, true);
-            Log.d(TAG, (motor == PSoCBleRobotService.Motor.LEFT ? "Left" : "Right") + " Motor On");
-        } else { // turn off the specified motor
-            mPSoCBleRobotService.setMotorState(motor, false);
-            mPSoCBleRobotService.setMotorSpeed(motor, 0); // Force motor off
-            Log.d(TAG, (motor == PSoCBleRobotService.Motor.LEFT ? "Left" : "Right") + " Motor Off");
-        }
-
-    }
-
-    /**
      * Handle broadcasts from the Car service object. The events are:
      * ACTION_CONNECTED: connected to the car.
      * ACTION_DISCONNECTED: disconnected from the car.
@@ -265,11 +266,9 @@ public class ControlActivity extends AppCompatActivity {
                     break;
                 case PSoCBleRobotService.ACTION_DATA_AVAILABLE:
                     // This is called after a Notify completes
-                    Log.d(TAG, "ACTION DATA AVAIL");
-                    //mTachLeftText.setText(String.format("%d", PSoCBleRobotService.getTach(PSoCBleRobotService.Motor.LEFT)));
-                    mTachRightText.setText(String.format("%d", PSoCBleRobotService.getTach(PSoCBleRobotService.Motor.RIGHT)));
-                    mTachLeftText.setText(String.format("%d", PSoCBleRobotService.getCapsense()));
-                    mTachRightText.setText(String.format("%d", PSoCBleRobotService.getIR1()));
+                    mIR1Text.setText(String.format("%d", PSoCBleRobotService.getIR1()));
+                    mIR2Text.setText(String.format("%d", PSoCBleRobotService.getIR2()));
+                    mUltrasonicText.setText(String.format("%d", PSoCBleRobotService.getUltrasonic()));
                     break;
             }
         }
