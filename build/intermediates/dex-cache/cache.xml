@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.1.1_bfc4ab84e89e581fe7510b6f4d22d86834d97506\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_5d94f133387c2d5dac308be71b01ed309946191e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Todd\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_be5a65b338c1a2772c9895fd68a32c499d26b5e8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.3.0_c140ca3fbcd5f7a0b9593bf5d9e8d8e37fd2b93a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="90d933f012ecac35758e8e07314125548a34b8cb">
+        <dex dex="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_d4069ab59dfde85c95a7c2cb93553bd324c44ec4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.1.1_b21e8db5ead63c56133bd00778000abc7cf6750d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d96174fbf369c29bde03670189ea9f1d30fcdf3f">
+        <dex dex="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_f7b8bffdbf759208793babc850ae857fa468b7be\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_fcfbb2d2d78b902671e75bdbb74f2026fa8dd5a0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.3.0_c25c94d2edc0271c2f5e09da644dd6e3779d663e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="C:\Users\Todd\Desktop\cypressrobotkit-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.3.0_3885ecfed78857826f26463c85735efe6f3269b3\classes.dex" />
+    </item>
+
+</items>
