@@ -66,6 +66,7 @@ public class ControlActivity extends AppCompatActivity {
     private static Button mLineFollowingButton;
     private static Button mObstacleAvoidanceButton;
 
+    private static int state = 0;
 
     // This tag is used for debug messages
     private static final String TAG = ControlActivity.class.getSimpleName();
@@ -102,8 +103,20 @@ public class ControlActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_control);
 
+        final Intent intent = getIntent();
+        mDeviceAddress = intent.getStringExtra(ScanActivity.EXTRAS_BLE_ADDRESS);
+
+        // Bind to the BLE service
+        Log.i(TAG, "Binding Service");
+        Log.d("BLE", "STARTING INTENT");
+
+        Intent RobotServiceIntent = new Intent(this, PSoCBleRobotService.class);
+        bindService(RobotServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+
+        setContentView(R.layout.activity_control);
         // Assign the various layout objects to the appropriate variables
         mIR1Text = (TextView) findViewById(R.id.IR1);
         mIR2Text = (TextView) findViewById(R.id.IR2);
@@ -115,14 +128,6 @@ public class ControlActivity extends AppCompatActivity {
         mLeftButton = (Button) findViewById(R.id.left_button);
         mLineFollowingButton = (Button) findViewById(R.id.linefollowing);
         mObstacleAvoidanceButton = (Button) findViewById(R.id.obstacleavoidance);
-
-        final Intent intent = getIntent();
-        mDeviceAddress = intent.getStringExtra(ScanActivity.EXTRAS_BLE_ADDRESS);
-
-        // Bind to the BLE service
-        Log.i(TAG, "Binding Service");
-        Intent RobotServiceIntent = new Intent(this, PSoCBleRobotService.class);
-        bindService(RobotServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
 
         mForwardButton.setOnTouchListener(new View.OnTouchListener(){
             @Override
@@ -259,6 +264,8 @@ public class ControlActivity extends AppCompatActivity {
             final String action = intent.getAction();
             switch (action) {
                 case PSoCBleRobotService.ACTION_CONNECTED:
+                    state = 1;
+                    Log.d("BLE", "CONNECTED");
                     // No need to do anything here. Service discovery is started by the service.
                     break;
                 case PSoCBleRobotService.ACTION_DISCONNECTED:

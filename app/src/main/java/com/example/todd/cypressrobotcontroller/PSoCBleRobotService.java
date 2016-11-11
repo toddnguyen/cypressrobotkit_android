@@ -73,12 +73,15 @@ public class PSoCBleRobotService extends Service {
 
     private static final String ultrasonicUUID =    "00000000-0000-1000-8000-00805f9b34f2";
     private static final String ir1UUID =           "00000000-0000-1000-8000-00805f9b34f6";
+    private static final String ir2UUID =           "00000000-0000-1000-8000-00805f9b34f7";
+
     private static final String CCCD_UUID =         "00002902-0000-1000-8000-00805f9b34fb";
 
     // Bluetooth Characteristics that we need to read/write
     private static BluetoothGattCharacteristic mMotorCharacteristic;
     private static BluetoothGattCharacteristic mUltrasonicCharacteristic;
     private static BluetoothGattCharacteristic mIR1Characteristic;
+    private static BluetoothGattCharacteristic mIR2Characteristic;
 
     // State (on/off), speed of the motors, and tach values
     private static int ultrasonicValue = 0;
@@ -161,9 +164,12 @@ public class PSoCBleRobotService extends Service {
                 mMotorCharacteristic = gattService.getCharacteristic(UUID.fromString(motorUUID));
                 mUltrasonicCharacteristic = gattService.getCharacteristic(UUID.fromString(ultrasonicUUID));
                 mIR1Characteristic = gattService.getCharacteristic(UUID.fromString(ir1UUID));
+                mIR2Characteristic = gattService.getCharacteristic(UUID.fromString(ir2UUID));
 
                 setCharacteristicNotification(mUltrasonicCharacteristic, true);
                 setCharacteristicNotification(mIR1Characteristic, true);
+                setCharacteristicNotification(mIR2Characteristic, true);
+
             } else {
                 Log.w(TAG, "onServicesDiscovered received: " + status);
             }
@@ -238,6 +244,9 @@ public class PSoCBleRobotService extends Service {
                     break;
                 case ir1UUID:
                     ir1Value = (int) characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 0);
+                    break;
+                case ir2UUID:
+                    ir2Value = (int) characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 0);
                     break;
             }
             // Tell the activity that new car data is available
